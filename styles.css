@@ -8,7 +8,7 @@
   body {
     font-family: 'Arial', sans-serif;
     color: #333;
-    background: #e8f5e9;
+    background: #bddfc0;
     line-height: 1.6;
   }
   
@@ -23,7 +23,7 @@
     height: 150px;
     width: 150px;
     z-index: 1000;
-    background-color: rgba(232, 245, 233, 0.9);
+    background-color: rgba(194, 236, 198, 0.9);
     border-radius: 50%;
   }
   
@@ -110,3 +110,26 @@
     color: #b2dfdb;
   }
   
+  /* Set body and html to take full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content wrapper for flexible layout */
+#dynamic-content {
+  flex: 1; /* Ensures it takes up available space */
+}
+
+/* Footer styling */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #004d40;
+  color: #fff;
+  position: relative; /* Default position */
+  bottom: 0; /* Ensure it stays at the bottom */
+  width: 100%;
+}
