@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroLife</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="src/assets/logo/favicon.png" type="image/png">
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div class="loading">
+    <svg viewBox="0 0 100 100">
+      <g fill="none" stroke="#4caf50" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+        <!-- Left Line -->
+        <path d="M 21 40 V 59">
+          <animateTransform attributeName="transform" type="rotate" values="0 21 59; 180 21 59" dur="2s" repeatCount="indefinite" />
+        </path>
+        <!-- Right Line -->
+        <path d="M 79 40 V 59">
+          <animateTransform attributeName="transform" type="rotate" values="0 79 59; -180 79 59" dur="2s" repeatCount="indefinite" />
+        </path>
+        <!-- Top Line -->
+        <path d="M 50 21 V 40">
+          <animate attributeName="d" values="M 50 21 V 40; M 50 59 V 40" dur="2s" repeatCount="indefinite" />
+        </path>
+        <!-- Bottom Line -->
+        <path d="M 50 60 V 79">
+          <animate attributeName="d" values="M 50 60 V 79; M 50 98 V 79" dur="2s" repeatCount="indefinite" />
+        </path>
+        <!-- Top Box -->
+        <path d="M 50 21 L 79 40 L 50 60 L 21 40 Z">
+          <animate attributeName="stroke" values="rgba(76,175,80,1); rgba(100,200,100,0)" dur="2s" repeatCount="indefinite" />
+        </path>
+        <!-- Middle Box -->
+        <path d="M 50 40 L 79 59 L 50 79 L 21 59 Z" />
+        <!-- Bottom Box -->
+        <path d="M 50 59 L 79 78 L 50 98 L 21 78 Z">
+          <animate attributeName="stroke" values="rgba(100,200,100,0); rgba(76,175,80,1)" dur="2s" repeatCount="indefinite" />
+        </path>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="#">
+        <img src="src/assets/logo/logo.png" alt="AeroLife Logo">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="core.html">Core</a></li>
+    </ul>
+  </nav>
+
+  <!-- Banner -->
+  <header class="banner">
+    <h1>Welcome to AeroLife</h1>
+    <p>Your trusted resource for real-time environmental data.</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    <section>
+      <h2>Discover the Environment Around You</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod, nisi vel blandit tincidunt, ligula elit dictum metus, in interdum erat sapien in metus.</p>
+    </section>
+    <section>
+      <h2>Monitor Key Indicators</h2>
+      <p>Curabitur vel urna et eros hendrerit tincidunt. Nulla facilisi. Suspendisse potenti. Quisque maximus justo nec dolor pellentesque, a vulputate magna vulputate.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 AeroLife. All Rights Reserved.</p>
+    <p>INST377 | University of Maryland</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        document.querySelector('.loading').style.display = 'none';
+      }, 1500); // Hide loading animation after 1.5 seconds
+    };
+  </script>
+</body>
+</html>
