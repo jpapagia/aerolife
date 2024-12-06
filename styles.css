@@ -1,116 +1,189 @@
 /* Reset and Base Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    color: #333;
-    background: #bddfc0;
-    line-height: 1.6;
-  }
-  
-  .loading {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    width: 150px;
-    z-index: 1000;
-    background-color: rgba(194, 236, 198, 0.9);
-    border-radius: 50%;
-  }
-  
-  .loading svg {
-    height: 100px;
-    width: 100px;
-  }
-  
-  /* Navigation Bar */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #026958;
-    color: #fff;
-  }
-  
-  .navbar .logo img {
-    height: 50px;
-  }
-  
-  .navbar .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .navbar .nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .navbar .nav-links li a:hover {
-    color: #00bfa5;
-  }
-  
-  /* Banner */
-  .banner {
-    text-align: center;
-    padding: 2rem;
-    background-color: #4caf50;
-    color: #fff;
-  }
-  
-  .banner h1 {
-    font-size: 2.5rem;
-  }
-  
-  .banner p {
-    font-size: 1.2rem;
-  }
-  
-  /* Main Content */
-  .content {
-    padding: 2rem;
-  }
-  
-  .content section {
-    margin-bottom: 2rem;
-  }
-  
-  .content h2 {
-    color: #004d40;
-    margin-bottom: 1rem;
-  }
-  
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 1rem 0;
-    background-color: #004d40;
-    color: #fff;
-  }
-  
-  .footer p {
-    margin: 0.5rem 0;
-  }
-  
-  .footer p:nth-child(2) {
-    font-size: 0.9rem;
-    color: #b2dfdb;
-  }
-  
-  /* Set body and html to take full height */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background: #bddfc0;
+  line-height: 1.6;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 150px;
+  z-index: 1000;
+  background-color: rgba(194, 236, 198, 0.9);
+  border-radius: 50%;
+}
+
+.loading svg {
+  height: 100px;
+  width: 100px;
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem; /* Reduced padding */
+  background-color: #026958;
+  color: #fff;
+  height: 70px; /* Explicit height if needed */
+}
+
+.navbar .logo img {
+  height: 50px;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center; /* Align links and button vertically */
+}
+
+.navbar .nav-links li {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Hover effect for normal links */
+.navbar .nav-links li a:not(.blob-btn):hover {
+  color: #00bfa5;
+}
+
+/* Blob Button Styles for Core */
+.blob-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.blob-btn__inner {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: #00bfa5;
+}
+
+.blob-btn__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  filter: url('#goo');
+}
+
+.blob-btn__blob {
+  position: absolute;
+  top: 0;
+  width: 25%; /* Divide equally into 4 parts */
+  height: 100%;
+  background: #4caf50;
+  border-radius: 50%;
+  transform: translateY(150%) scale(1.4);
+  transition: transform 0.45s;
+}
+
+.blob-btn:hover .blob-btn__blob {
+  transform: translateY(0) scale(1.4);
+}
+
+.blob-btn__blob:nth-child(1) {
+  left: 0%;
+  transition-delay: 0s;
+}
+
+.blob-btn__blob:nth-child(2) {
+  left: 25%;
+  transition-delay: 0.1s;
+}
+
+.blob-btn__blob:nth-child(3) {
+  left: 50%;
+  transition-delay: 0.2s;
+}
+
+.blob-btn__blob:nth-child(4) {
+  left: 75%;
+  transition-delay: 0.3s;
+}
+
+/* Banner */
+.banner {
+  text-align: center;
+  padding: 2rem;
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.banner h1 {
+  font-size: 2.5rem;
+}
+
+.banner p {
+  font-size: 1.2rem;
+}
+
+/* Main Content */
+.content {
+  padding: 2rem;
+}
+
+.content section {
+  margin-bottom: 2rem;
+}
+
+.content h2 {
+  color: #004d40;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #004d40;
+  color: #fff;
+}
+
+/* Set body and html to take full height */
 html, body {
   height: 100%;
   margin: 0;
@@ -120,16 +193,5 @@ html, body {
 
 /* Content wrapper for flexible layout */
 #dynamic-content {
-  flex: 1; /* Ensures it takes up available space */
-}
-
-/* Footer styling */
-.footer {
-  text-align: center;
-  padding: 1rem 0;
-  background-color: #004d40;
-  color: #fff;
-  position: relative; /* Default position */
-  bottom: 0; /* Ensure it stays at the bottom */
-  width: 100%;
+  flex: 1;
 }

@@ -21,8 +21,31 @@
     <ul class="nav-links">
       <li><a href="index.html" data-link class="active">Home</a></li>
       <li><a href="about.html" data-link>About</a></li>
-      <li><a href="core.html" data-link>Core</a></li>
+      <li>
+        <a href="core.html" data-link class="blob-btn">
+          Core
+          <span class="blob-btn__inner">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </a>
+        <!-- SVG for Gooey Effect -->
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+          <defs>
+            <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+              <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+            </filter>
+          </defs>
+        </svg>
+      </li>
     </ul>
+    
   </nav>
 
   <!-- Dynamic Content Wrapper -->
@@ -49,7 +72,7 @@
   <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2024 AeroLife. All Rights Reserved.</p>
-    <p>INST377 | University of Maryland</p>
+    <p>University of Maryland | INST377</p>
   </footer>
 
   <!-- JavaScript -->
