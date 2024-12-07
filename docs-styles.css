@@ -34,25 +34,60 @@ body {
 
 /* Button container */
 .docs-buttons {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Align buttons horizontally in the center */
+  gap: 1rem; /* Add spacing between buttons */
   margin-top: 1rem;
 }
 
-/* Modern button styles */
-.modern-btn {
-  display: inline-block;
+/* GitHub Button Styling */
+.github-btn {
+  display: inline-flex;
+  align-items: center; /* Aligns icon and text vertically */
+  justify-content: center;
   padding: 0.75rem 1.5rem;
-  margin: 0.5rem;
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
-  background: #00bfa5;
+  background: #333; /* GitHub's color */
   color: white;
   transition: background 0.3s ease, transform 0.3s ease;
+  height: 50px; /* Consistent height */
 }
 
-.modern-btn:hover {
-  background: #026958;
-  transform: translateY(-2px);
+.github-btn i {
+  margin-right: 0.5rem; /* Space between icon and text */
+}
+
+.github-btn:hover {
+  background: #24292e; /* Slightly lighter GitHub color */
+  transform: translateY(-2px); /* Lift on hover */
+}
+
+/* Vercel Button Styling */
+.vercel-btn {
+  display: inline-flex;
+  align-items: center; /* Aligns icon and text vertically */
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  background: black; /* Vercel's color */
+  color: white;
+  transition: background 0.3s ease, transform 0.3s ease;
+  height: 50px; /* Consistent height */
+}
+
+.vercel-btn .vercel-icon {
+  width: 24px; /* Adjust icon size */
+  height: 24px;
+  margin-right: 0.5rem; /* Space between icon and text */
+}
+
+.vercel-btn:hover {
+  background: #1a1a1a; /* Slightly lighter Vercel color */
+  transform: translateY(-2px); /* Lift on hover */
 }
 
 /* Content styling */
@@ -77,44 +112,43 @@ body {
 
 /* Code Snippet Container */
 .code-snippet {
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Code Block Styling */
-  .code-snippet pre {
-    background: #474747;
-    color: #fff;
-    padding: 1rem;
-    border-radius: 5px;
-    overflow-x: auto;
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
-  /* Copy Button Styling */
-  .copy-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #00bfa5;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background 0.3s ease;
-  }
-  
-  .copy-btn:hover {
-    background: #026958;
-  }
-  
-  .copy-btn:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #00bfa5;
-  }
+  position: relative;
+  margin-bottom: 1.5rem;
+}
 
+/* Code Block Styling */
+.code-snippet pre {
+  background: #474747;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Copy Button Styling */
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #00bfa5;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: #026958;
+}
+
+.copy-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #00bfa5;
+}
 
 /* Footer styling */
 .footer {
