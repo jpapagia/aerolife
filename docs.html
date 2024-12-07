@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | AeroLife</title>
+  <title>Documentation | AeroLife</title>
+  <!-- Import existing styles -->
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="docs-styles.css">
   <link rel="icon" href="src/assets/logo/favicon.png" type="image/png">
 </head>
 <body>
+  <!-- Loading Animation -->
+  <div class="loading"></div>
+
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">
@@ -16,46 +21,69 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="docs.html" class="active">Docs</a></li>
-      <li><a href="core.html">Core</a></li>
+      <li><a href="index.html" data-link>Home</a></li>
+      <li><a href="docs.html" data-link class="active">Docs</a></li>
+      <li>
+        <a href="core.html" data-link class="blob-btn">
+          Core
+          <span class="blob-btn__inner">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </a>
+      </li>
     </ul>
   </nav>
 
-  <!-- Dynamic Content Wrapper -->
-  <div id="dynamic-content">
-    <!-- About Section -->
-    <main class="content">
-      <section>
-        <h1>About AeroLife</h1>
-        <p>AeroLife is your trusted resource for real-time environmental data. Our mission is to provide accessible and accurate air quality and weather information to empower individuals, organizations, and city planners to make informed decisions for a healthier environment.</p>
-      </section>
+  <!-- Main Content -->
+  <div class="docs-container">
+    <header class="docs-header">
+      <h1>Getting Started with AeroLife</h1>
+      <p>Deploy AeroLife quickly with this user-friendly documentation.</p>
+      <div class="docs-buttons">
+        <a href="https://github.com/yourrepo" target="_blank" class="modern-btn">View on GitHub</a>
+        <a href="https://vercel.com/yourproject" target="_blank" class="modern-btn">Deploy to Vercel</a>
+      </div>
+    </header>
 
-      <section>
-        <h2>What We Do</h2>
-        <p>We utilize cutting-edge technology to aggregate real-time data on air quality and weather conditions from reliable sources like OpenWeatherMap. Our user-friendly web application displays this information through interactive visualizations and easy-to-read metrics.</p>
-      </section>
+    <section class="docs-content">
+      <h2>Installation</h2>
+      <p>Run the following command to install:</p>
+      <div class="code-snippet">
+        <button class="copy-btn" aria-label="Copy code">Copy</button>
+        <pre><code>npm install</code></pre>
+      </div>
 
-      <section>
-        <h2>Why It Matters</h2>
-        <p>Air pollution affects millions of people globally, impacting health, the economy, and the environment. AeroLife bridges the gap between complex data and actionable insights, helping individuals, businesses, and policymakers protect public health and plan for sustainable futures.</p>
-      </section>
+      <h2>Configuration</h2>
+      <p>Modify the settings in the configuration file:</p>
+      <div class="code-snippet">
+        <button class="copy-btn" aria-label="Copy code">Copy</button>
+        <pre><code>{
+  "apiKey": "your-api-key",
+  "environment": "production"
+}</code></pre>
+      </div>
 
-      <section>
-        <h2>Target Platforms</h2>
-        <p>AeroLife is designed to perform seamlessly across modern browsers and devices, including:</p>
-        <ul>
-          <li>Desktop Browsers: Chrome, Firefox, Edge, Safari</li>
-          <li>Mobile Browsers: iOS Safari, Android Chrome</li>
-        </ul>
-      </section>
-    </main>
+      <h2>Running the Application</h2>
+      <p>Start the application with the following command:</p>
+      <div class="code-snippet">
+        <button class="copy-btn" aria-label="Copy code">Copy</button>
+        <pre><code>npm run start</code></pre>
+      </div>
+    </section>
   </div>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2024 AeroLife. All Rights Reserved.</p>
-    <p>INST377 | University of Maryland</p>
+    <p>&copy; 2024 AeroLife. All Rights Reserved. University of Maryland | INST377</p>
   </footer>
+
+  <!-- JavaScript -->
+  <script src="scripts/loading.js"></script>
+  <script src="scripts/docs.js"></script>
 </body>
 </html>
