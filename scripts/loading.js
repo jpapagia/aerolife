@@ -17,21 +17,33 @@ document.addEventListener('DOMContentLoaded', async () => {
       svgElement.parentNode.replaceChild(clone, svgElement);
     }
   };
-
   const loadPage = async (url) => {
     loadingElement.style.display = 'flex'; // Show loading animation
-    resetAnimation(); // Reset the animation to play continuously
-
+    resetAnimation();
+  
     try {
       const response = await fetch(url);
       if (!response.ok) throw new Error('Page not found');
       const html = await response.text();
-
+  
+      // Parse fetched HTML
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = html;
-      const newContent = tempDiv.querySelector('#dynamic-content').innerHTML;
-
-      dynamicContent.innerHTML = newContent; 
+  
+      // Find the #dynamic-content element in the fetched HTML
+      const newContent = tempDiv.querySelector('#dynamic-content');
+      if (newContent) {
+        // Replace the existing #dynamic-content with the new content
+        const currentDynamicContent = document.getElementById('dynamic-content');
+        if (currentDynamicContent) {
+          currentDynamicContent.innerHTML = newContent.innerHTML;
+        } else {
+          console.error('Current #dynamic-content not found in DOM');
+        }
+      } else {
+        console.error('Fetched HTML does not contain #dynamic-content');
+        dynamicContent.innerHTML = '<p>Error: Dynamic content not found.</p>';
+      }
     } catch (err) {
       console.error(err);
       dynamicContent.innerHTML = '<p>Error loading page.</p>';
@@ -41,7 +53,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       }, 1000);
     }
   };
-
+  
+  
   // Event listener for navigation links
   document.querySelectorAll('[data-link]').forEach((link) => {
     link.addEventListener('click', (e) => {

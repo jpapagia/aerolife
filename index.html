@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AeroLife</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="src/assets/logo/favicon.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="src/assets/logo/favicon.png" type="image/png"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
   <!-- Loading Animation -->
-  <div class="loading"></div>
+  <div class="loading">
+    <svg width="100" height="100" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="45" stroke="#026958" stroke-width="4" fill="none"></circle>
+      <path d="M50 10 A40 40 0 0 1 90 50" stroke="#00bfa5" stroke-width="4" fill="none"></path>
+    </svg>
+  </div>
 
   <!-- Navigation Bar -->
   <nav class="navbar">
@@ -21,7 +26,7 @@
     </div>
     <ul class="nav-links">
       <li><a href="index.html" data-link class="active">Home</a></li>
-      <li><a href="about.html" data-link>About</a></li>
+      <li><a href="docs.html" data-link>Docs</a></li>
       <li>
         <a href="core.html" data-link class="blob-btn">
           Core
@@ -38,15 +43,19 @@
     </ul>
   </nav>
 
-<!-- Banner Section -->
-<header class="banner">
-  <video autoplay loop muted playsinline>
-    <source src="src/assets/stock/stock.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <h1>Welcome to AeroLife</h1>
-  <p>Your trusted resource for real-time environmental data.</p>
-</header>
+  <!-- Banner Section -->
+  <header class="banner">
+    <div class="video-wrapper">
+      <video autoplay loop muted playsinline>
+        <source src="src/assets/stock/stock.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="overlay-content">
+      <h1>Welcome to AeroLife</h1>
+      <p>Your trusted resource for real-time environmental data.</p>
+    </div>
+  </header>
 
   <!-- About Section -->
   <section class="about">
@@ -54,9 +63,13 @@
       <h2>Discover the Environment Around You</h2>
       <p>With AeroLife, explore live environmental data, including air and water quality indices, to make informed decisions for a healthier lifestyle.</p>
     </div>
-    <img src="src/assets/stock/enviroment.jpg" alt="Discover Environment" class="about-image">
+    <div class="about-image-container">
+      <img class="about-image" src="src/assets/stock/enviroment.jpg" alt="Discover Environment">
+    </div>
+    
   </section>
 
+  <!-- Features Section -->
   <section class="features">
     <div class="feature">
       <i class="fas fa-chart-line"></i>
@@ -99,11 +112,12 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2024 AeroLife. All Rights Reserved. University of Maryland | INST377 </p>
+    <p>&copy; 2024 AeroLife. All Rights Reserved. University of Maryland | INST377</p>
   </footer>
 
   <!-- JavaScript -->
   <script src="scripts/loading.js"></script>
   <script src="scripts/carousel.js"></script>
+  <script src="scripts/banner.js"></script>
 </body>
 </html>
