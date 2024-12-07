@@ -3,15 +3,12 @@
 ## Overview
 Through the group project in the INST 377 class, students are expected to design and build a web application that runs on a real server (Node.js, etc.). Technology, design, **and** management must be well-justified in your presentations and documentation. Effective communication with both developers and non-technical people is a critical skill in the real world as well as in academia. Below are the evaluation criteria and submission requirements.
 
----
 
 ## Submission - **200pts**
 For the final project, submit a link to a GitHub repository that satisfies the following requirements:
 - **Team Collaboration**: All team members should contribute to the repository and appear as collaborators or contributors. One person will host the final project repository for submission. Other members may fork the project for their own copies.
 - **Public Repository**: The GitHub repository must be public.
 - **Deployment**: Deploy the project to **Vercel** and provide the deployment link.
-
----
 
 ## Final Reports
 
@@ -36,8 +33,6 @@ This document is for future developers with general web application knowledge bu
 #### Documentation Guidelines:
 - Written in Markdown (MD) format and well-formatted  
 - Saved under `docs` in your main project directory  
-
----
 
 ## Minimum Code Guidelines
 
@@ -68,14 +63,11 @@ The back end must meet the following requirements:
      - Fetch and manipulate data from an external provider  
 - Both APIs must be used by the **front end**  
 
----
-
 ## Deployment - **20pts**
 The project must be:
 - **Deployed to Vercel**  
 - Fully functional  
 
----
 
 ## Extra Credit Opportunities
 - Use **React** for your front end and design it to update dynamically.  

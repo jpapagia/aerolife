@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       tempDiv.innerHTML = html;
       const newContent = tempDiv.querySelector('#dynamic-content').innerHTML;
 
-      dynamicContent.innerHTML = newContent; // Replace content
+      dynamicContent.innerHTML = newContent; 
     } catch (err) {
       console.error(err);
       dynamicContent.innerHTML = '<p>Error loading page.</p>';

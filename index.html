@@ -6,6 +6,7 @@
   <title>AeroLife</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="src/assets/logo/favicon.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <!-- Loading Animation -->
@@ -33,49 +34,76 @@
             </span>
           </span>
         </a>
-        <!-- SVG for Gooey Effect -->
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-          <defs>
-            <filter id="goo">
-              <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
-              <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-            </filter>
-          </defs>
-        </svg>
       </li>
     </ul>
-    
   </nav>
 
-  <!-- Dynamic Content Wrapper -->
-  <div id="dynamic-content">
-    <!-- Banner -->
-    <header class="banner">
-      <h1>Welcome to AeroLife</h1>
-      <p>Your trusted resource for real-time environmental data.</p>
-    </header>
+<!-- Banner Section -->
+<header class="banner">
+  <video autoplay loop muted playsinline>
+    <source src="src/assets/stock/stock.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <h1>Welcome to AeroLife</h1>
+  <p>Your trusted resource for real-time environmental data.</p>
+</header>
 
-    <!-- Main Content -->
-    <main class="content">
-      <section>
-        <h2>Discover the Environment Around You</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod, nisi vel blandit tincidunt, ligula elit dictum metus, in interdum erat sapien in metus.</p>
-      </section>
-      <section>
-        <h2>Monitor Key Indicators</h2>
-        <p>Curabitur vel urna et eros hendrerit tincidunt. Nulla facilisi. Suspendisse potenti. Quisque maximus justo nec dolor pellentesque, a vulputate magna vulputate.</p>
-      </section>
-    </main>
-  </div>
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-content">
+      <h2>Discover the Environment Around You</h2>
+      <p>With AeroLife, explore live environmental data, including air and water quality indices, to make informed decisions for a healthier lifestyle.</p>
+    </div>
+    <img src="src/assets/stock/enviroment.jpg" alt="Discover Environment" class="about-image">
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <i class="fas fa-chart-line"></i>
+      <h3>Real-Time Data</h3>
+      <p>Access up-to-date information on air and water quality across the U.S.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-database"></i>
+      <h3>Historical Insights</h3>
+      <p>Analyze trends and patterns with our comprehensive data archives.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-leaf"></i>
+      <h3>Eco-Friendly Living</h3>
+      <p>Empower sustainable choices for a greener tomorrow.</p>
+    </div>
+  </section>
+
+  <!-- Carousel Section -->
+  <section class="carousel">
+    <div class="carousel-container">
+      <div class="carousel-slide">
+        <img src="src/assets/stock/sample1.jpg" alt="Air Quality Visualization">
+        <p>Live Air Quality Index Updates</p>
+      </div>
+      <div class="carousel-slide">
+        <img src="src/assets/stock/sample2.jpg" alt="Water Quality Data">
+        <p>Track Historical Water Quality Data</p>
+      </div>
+      <div class="carousel-slide">
+        <img src="src/assets/stock/sample3.jpg" alt="Dashboard">
+        <p>Interactive Dashboard for Analysis</p>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2024 AeroLife. All Rights Reserved.</p>
-    <p>University of Maryland | INST377</p>
+    <p>&copy; 2024 AeroLife. All Rights Reserved. University of Maryland | INST377 </p>
   </footer>
 
   <!-- JavaScript -->
   <script src="scripts/loading.js"></script>
+  <script src="scripts/carousel.js"></script>
 </body>
 </html>
