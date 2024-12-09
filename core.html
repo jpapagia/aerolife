@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Core | AeroLife</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="core-styles.css" />
+    <link rel="icon" href="src/assets/logo/favicon.png" type="image/png" />
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0-beta3/css/all.min.css" />
+    <!-- amCharts 5 -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+</head>
+
+<body>
+    <!-- Loading Animation -->
+    <div class="loading"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="src/assets/logo/logo.png" alt="AeroLife Logo" />
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-link>Home</a></li>
+            <li><a href="docs.html" data-link>Docs</a></li>
+            <li>
+                <a href="core.html" data-link class="blob-btn active">
+                    Core
+                    <span class="blob-btn__inner">
+                        <span class="blob-btn__blobs">
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="core-container">
+        <!-- Location Section -->
+        <section class="location-section">
+            <h2>Location</h2>
+            <p class="location-info">
+                <i class="fas fa-map-marker-alt"></i>
+                Current Location: <span id="current-location">Loading...</span>
+            </p>
+            <p class="coordinates">
+                <i class="fas fa-globe"></i>
+                Coordinates: <span id="current-coordinates">Loading...</span>
+            </p>
+            <div class="zip-form">
+                <input type="text" id="manual-zip" placeholder="Enter ZIP code" maxlength="5" />
+                <button id="change-zip-btn" class="modern-btn">Change ZIP</button>
+            </div>
+        </section>
+
+        <!-- Air Quality Section -->
+        <section class="pollution-section">
+            <h2>Air Pollution Data</h2>
+            <div class="pollution-summary card">
+                <h3>Current Air Quality</h3>
+                <p id="current-pollution">Fetching data...</p>
+            </div>
+            <div class="pollutant-key">
+                <div class="pollutant-key-item">
+                    <span class="key-color" style="background: #54b947"></span>Good
+                </div>
+                <div class="pollutant-key-item">
+                    <span class="key-color" style="background: #b0d136"></span>Fair
+                </div>
+                <div class="pollutant-key-item">
+                    <span class="key-color" style="background: #fdae19"></span>Moderate
+                </div>
+                <div class="pollutant-key-item">
+                    <span class="key-color" style="background: #f04922"></span>Poor
+                </div>
+                <div class="pollutant-key-item">
+                    <span class="key-color" style="background: #ee1f25"></span>Very Poor
+                </div>
+            </div>
+            
+            <div id="pollutant-charts" class="pollutant-charts-container">
+                <!-- Gauges for pollutants will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Placeholder Section -->
+        <section class="api-placeholder">
+            <h2>Other Data APIs</h2>
+            <p>Additional API data will be displayed here...</p>
+        </section>
+
+        <!-- Error Dialog -->
+        <dialog id="zip-error-dialog" class="error-dialog">
+            <p>Please enter a valid 5-digit U.S. ZIP code.</p>
+            <button id="close-dialog-btn" class="modern-btn">Close</button>
+        </dialog>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 AeroLife. All Rights Reserved. University of Maryland | INST377</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/loading.js"></script>
+    <script src="scripts/core.js"></script>
+    <script src="scripts/gauge.js"></script>
+</body>
+
+</html>

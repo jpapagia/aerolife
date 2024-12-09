@@ -1,0 +1,158 @@
+/* Import existing styles */
+@import url('styles.css');
+
+/* General Layout Improvements */
+.core-container {
+    flex: 1;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Location Section */
+.location-section {
+    text-align: center;
+    background: #f9fdf9;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.location-section h2 {
+    font-size: 2rem;
+    color: #026958;
+    margin-bottom: 1rem;
+}
+
+.location-info,
+.coordinates {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.location-info span,
+.coordinates span {
+    font-weight: bold;
+    color: #026958;
+}
+
+.zip-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.zip-form input {
+    padding: 0.7rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 160px;
+    text-align: center;
+}
+
+.zip-form input:focus {
+    outline: none;
+    border-color: #00bfa5;
+}
+
+.zip-form button {
+    background: #00bfa5;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 0.7rem 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.zip-form button:hover {
+    background: #026958;
+    transform: translateY(-2px);
+}
+
+/* Pollutant Key Styling */
+.pollutant-key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem auto;
+    padding: 1rem;
+    background: #f9fdf9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pollutant-key-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.key-color {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+/* Gauge Container */
+.gauge-container {
+    width: 320px;
+    height: 370px;
+    margin: 1rem;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Pollutant Header Styling */
+.pollutant-header {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.pollutant-header h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #026958;
+    margin: 0;
+}
+
+.pollutant-header p {
+    font-size: 1rem;
+    color: #555;
+    margin: 0.3rem 0 0;
+}
+
+/* Adjust Gauge Layout */
+.pollutant-charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Footer Styling */
+.footer {
+    margin-top: auto;
+    background: #004d40;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 0;
+}

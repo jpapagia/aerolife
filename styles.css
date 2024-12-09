@@ -113,14 +113,17 @@ body {
   left: 0%;
   transition-delay: 0s;
 }
+
 .blob-btn__blob:nth-child(2) {
   left: 25%;
   transition-delay: 0.1s;
 }
+
 .blob-btn__blob:nth-child(3) {
   left: 50%;
   transition-delay: 0.2s;
 }
+
 .blob-btn__blob:nth-child(4) {
   left: 75%;
   transition-delay: 0.3s;
@@ -129,15 +132,19 @@ body {
 /* Banner */
 .banner {
   position: fixed;
-  top: 70px; /* Adjusted for the navbar */
+  top: 70px;
+  /* Adjusted for the navbar */
   left: 0;
   width: 100%;
-  height: calc(100vh - 70px); /* Full viewport minus navbar height */
+  height: calc(100vh - 70px);
+  /* Full viewport minus navbar height */
   overflow: hidden;
-  transition: opacity 0.6s ease; /* Smooth fade effect */
+  transition: opacity 0.6s ease;
+  /* Smooth fade effect */
   z-index: 10;
   opacity: 1;
-  pointer-events: auto; /* Interaction enabled when visible */
+  pointer-events: auto;
+  /* Interaction enabled when visible */
 }
 
 
@@ -181,13 +188,16 @@ body {
   justify-content: space-between;
   padding: 2rem;
   max-width: 1200px;
-  margin: 0 auto; /* Reset global margin */
-  padding-top: 14rem; /* Apply the offset here instead of using margin */
+  margin: 0 auto;
+  /* Reset global margin */
+  padding-top: 14rem;
+  /* Apply the offset here instead of using margin */
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: relative;
-  scroll-margin-top: 70px; /* Prevent cutting off when scrolled into view */
+  scroll-margin-top: 70px;
+  /* Prevent cutting off when scrolled into view */
 }
 
 .about-content {
@@ -212,45 +222,63 @@ body {
   height: 200px;
   border-radius: 12px;
   margin-top: 0.25rem;
-  
+
 }
 
 .about-image-container {
-  padding: 1rem; /* Padding around the image */
+  padding: 1rem;
+  /* Padding around the image */
 }
 
 /* Features Section */
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Original width */
-  gap: 1.5rem; /* Space between feature cards */
-  padding: 2rem; /* Internal spacing */
-  max-width: 1200px; /* Restrict section width */
-  margin: 2rem auto; /* Center it on the page */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Original width */
+  gap: 1.5rem;
+  /* Space between feature cards */
+  padding: 2rem;
+  /* Internal spacing */
+  max-width: 1200px;
+  /* Restrict section width */
+  margin: 2rem auto;
+  /* Center it on the page */
 }
 
 .feature {
-  text-align: center; /* Center-align text */
-  padding: 1.5rem; /* Internal card padding */
-  background: #fff; /* White card background */
-  border-radius: 10px; /* Smooth rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center;
+  /* Center-align text */
+  padding: 1.5rem;
+  /* Internal card padding */
+  background: #fff;
+  /* White card background */
+  border-radius: 10px;
+  /* Smooth rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
 }
 
 .feature i {
-  font-size: 2.5rem; /* Icon size */
-  color: #4caf50; /* Green color for icons */
-  margin-bottom: 1rem; /* Space below the icon */
+  font-size: 2.5rem;
+  /* Icon size */
+  color: #4caf50;
+  /* Green color for icons */
+  margin-bottom: 1rem;
+  /* Space below the icon */
 }
 
 .feature h3 {
-  font-size: 1.5rem; /* Title font size */
-  margin-bottom: 0.5rem; /* Space below title */
+  font-size: 1.5rem;
+  /* Title font size */
+  margin-bottom: 0.5rem;
+  /* Space below title */
 }
 
 .feature p {
-  font-size: 1rem; /* Text font size */
-  color: #555; /* Slightly muted text color */
+  font-size: 1rem;
+  /* Text font size */
+  color: #555;
+  /* Slightly muted text color */
 }
 
 /* Carousel Section */
@@ -261,7 +289,7 @@ body {
   max-height: 600px;
   margin: 2rem auto;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-container {
@@ -296,7 +324,7 @@ body {
 }
 
 .carousel-controls button {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   border: none;
   color: #fff;
   font-size: 2rem;
@@ -306,7 +334,7 @@ body {
 }
 
 .carousel-controls button:hover {
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 /* Footer */
@@ -334,7 +362,8 @@ body {
   height: 150px;
   width: 150px;
   z-index: 1000;
-  background-color: rgba(194, 236, 198, 0.5); /* Set alpha value to 0.5 for 50% transparency */
+  background-color: rgba(194, 236, 198, 0.5);
+  /* Set alpha value to 0.5 for 50% transparency */
   border-radius: 50%;
 }
 
