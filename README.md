@@ -21,6 +21,6 @@ NO: min value 0.1 - max value 100
 
 https://openweathermap.org/api/air-pollution
 
-Potentil APIs:
+Potentil APIs and resources:
 https://developer.nrel.gov/docs/solar/solar-resource-v1/
-  
+https://www.amcharts.com/demos/

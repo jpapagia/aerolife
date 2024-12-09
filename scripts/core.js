@@ -30,12 +30,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     const manualZipInput = document.getElementById('manual-zip');
     const changeZipBtn = document.getElementById('change-zip-btn');
     const zipErrorDialog = document.getElementById('zip-error-dialog');
-    const closeDialogBtn = document.getElementById('close-dialog-btn');
+    const closeDialogBtn = zipErrorDialog.querySelector('.close-btn');
 
     if (!locationDisplay || !coordinatesDisplay || !currentPollutionDisplay || !pollutantChartsContainer || !manualZipInput || !changeZipBtn || !zipErrorDialog || !closeDialogBtn) {
         console.error("Missing essential DOM elements.");
         return;
     }
+
+    // Show ZIP code error
+    function showZipError() {
+        zipErrorDialog.classList.add('show');
+        setTimeout(() => {
+            zipErrorDialog.classList.remove('show');
+        }, 7000); // Automatically hide after 7 seconds
+    }
+
+    // Close ZIP code error
+    closeDialogBtn.addEventListener('click', () => {
+        zipErrorDialog.classList.remove('show');
+    });
+    
 
     // Load API key
     let OPENWEATHER_API_KEY = "";
@@ -59,10 +73,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             const res = await fetch(`${GEO_API_BASE}?zip=${zip},US&appid=${OPENWEATHER_API_KEY}`);
             if (!res.ok) throw new Error("Invalid ZIP code");
             const data = await res.json();
-            return { lat: data.lat, lon: data.lon };
+            return { lat: data.lat, lon: data.lon, city: data.name || "Unknown" };
         } catch (error) {
             console.error("Error fetching coordinates:", error);
-            zipErrorDialog.showModal();
+            showZipError();
             return null;
         }
     }
@@ -88,19 +102,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             const coords = await fetchCoordinates(zip);
             if (!coords) return;
-    
+
             const { lat, lon } = coords;
             const pollutionData = await fetchAirPollutionData(lat, lon);
-    
+
             if (!pollutionData) {
                 currentPollutionDisplay.textContent = "Unable to retrieve air quality data.";
                 return;
             }
-    
+
             const { aqi, pollutants } = pollutionData;
             const aqiDescription = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
             const aqiColors = ["#54b947", "#b0d136", "#fdae19", "#f04922", "#ee1f25"]; // Matching key colors
-    
+
             // Update AQI display
             currentPollutionDisplay.innerHTML = `
                 <span style="
@@ -114,16 +128,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                     AQI: ${aqi} (${aqiDescription[aqi - 1]})
                 </span>
             `;
-    
+
             pollutantChartsContainer.innerHTML = ''; // Clear previous charts
-    
+
             // Display pollutants as gauges
             Object.entries(pollutants).forEach(([key, value]) => {
                 const containerId = `gauge-${key}`;
                 const gaugeContainer = document.createElement('div');
                 gaugeContainer.id = containerId;
                 gaugeContainer.className = 'gauge-container';
-    
+
                 function getFullName(key) {
                     const names = {
                         co: "Carbon Monoxide (CO)",
@@ -146,9 +160,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p>${value.toFixed(2)} μg/m³</p>
                 `;
                 gaugeContainer.appendChild(header);
-    
+
                 pollutantChartsContainer.appendChild(gaugeContainer);
-    
+
                 // Generate the gauge
                 createGauge(containerId, value, key);
             });
@@ -156,7 +170,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error("Error displaying pollution data:", error);
         }
     }
-    
 
     // Handle ZIP code change
     changeZipBtn.addEventListener('click', async () => {
@@ -164,20 +177,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (/^\d{5}$/.test(newZip)) {
             const locationData = await fetchCoordinates(newZip);
             if (locationData) {
-                const { lat, lon } = locationData;
-                locationDisplay.textContent = `Lat: ${lat}, Lon: ${lon}`;
-                coordinatesDisplay.textContent = `ZIP: ${newZip}`;
+                const { lat, lon, city } = locationData;
+            
+                coordinatesDisplay.textContent = `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)}`;
+                locationDisplay.textContent = `City: ${city}, ZIP: ${newZip}`;
                 await displayPollutionData(newZip);
             }
+            
         } else {
-            zipErrorDialog.showModal();
+            showZipError();
         }
     });
-
-    // Close ZIP code error dialog
-    closeDialogBtn.addEventListener('click', () => {
-        zipErrorDialog.close();
-    });
+    
 
     // Initial load
     const locationData = await fetchUserLocationByIP();
