@@ -66,11 +66,13 @@
         </section>
 
         <!-- Air Quality Section -->
-        <section class="pollution-section">
+        <section class="pollution-summary">
             <h2>Air Pollution Data</h2>
-            <div class="pollution-summary card">
+            <div class="current-air-quality">
                 <h3>Current Air Quality</h3>
-                <p id="current-pollution">Fetching data...</p>
+                <p id="current-pollution">
+                    <span>AQI: 2 (Fair)</span>
+                </p>
             </div>
             <div class="pollutant-key">
                 <div class="pollutant-key-item">
@@ -89,6 +91,8 @@
                     <span class="key-color" style="background: #ee1f25"></span>Very Poor
                 </div>
             </div>
+        </section>
+        
             
             <div id="pollutant-charts" class="pollutant-charts-container">
                 <!-- Gauges for pollutants will be dynamically added here -->

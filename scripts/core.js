@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Display pollution data
     async function displayPollutionData(zip) {
         try {
             const coords = await fetchCoordinates(zip);
@@ -100,35 +99,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     
             const { aqi, pollutants } = pollutionData;
             const aqiDescription = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
-            currentPollutionDisplay.textContent = `AQI: ${aqi} (${aqiDescription[aqi - 1]})`;
+            const aqiColors = ["#54b947", "#b0d136", "#fdae19", "#f04922", "#ee1f25"]; // Matching key colors
+    
+            // Update AQI display
+            currentPollutionDisplay.innerHTML = `
+                <span style="
+                    display: inline-block;
+                    padding: 0.5rem 1rem;
+                    border-radius: 8px;
+                    background: ${aqiColors[aqi - 1]};
+                    color: white;
+                    font-weight: bold;
+                ">
+                    AQI: ${aqi} (${aqiDescription[aqi - 1]})
+                </span>
+            `;
     
             pollutantChartsContainer.innerHTML = ''; // Clear previous charts
     
-            // Pollutant name mappings
-            const pollutantNames = {
-                co: "Carbon Monoxide (CO)",
-                no: "Nitrogen Monoxide (NO)",
-                no2: "Nitrogen Dioxide (NO2)",
-                o3: "Ozone (O3)",
-                so2: "Sulphur Dioxide (SO2)",
-                pm2_5: "Particulates (PM2.5)",
-                pm10: "Particulates (PM10)",
-                nh3: "Ammonia (NH3)"
-            };
-    
             // Display pollutants as gauges
             Object.entries(pollutants).forEach(([key, value]) => {
-                // Create container for the gauge
                 const containerId = `gauge-${key}`;
                 const gaugeContainer = document.createElement('div');
                 gaugeContainer.id = containerId;
                 gaugeContainer.className = 'gauge-container';
     
-                // Add header with pollutant name and value
+                function getFullName(key) {
+                    const names = {
+                        co: "Carbon Monoxide (CO)",
+                        no: "Nitrogen Monoxide (NO)",
+                        no2: "Nitrogen Dioxide (NO2)",
+                        o3: "Ozone (O3)",
+                        so2: "Sulphur Dioxide (SO2)",
+                        pm2_5: "Particulates (PM2.5)",
+                        pm10: "Particulates (PM10)",
+                        nh3: "Ammonia (NH3)",
+                    };
+                    return names[key] || key.toUpperCase();
+                }
+                // Add pollutant header
+                const pollutantName = getFullName(key);
                 const header = document.createElement('div');
                 header.className = 'pollutant-header';
                 header.innerHTML = `
-                    <h3>${pollutantNames[key]}</h3>
+                    <h3>${pollutantName}</h3>
                     <p>${value.toFixed(2)} μg/m³</p>
                 `;
                 gaugeContainer.appendChild(header);
@@ -142,7 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error("Error displaying pollution data:", error);
         }
     }
-
+    
 
     // Handle ZIP code change
     changeZipBtn.addEventListener('click', async () => {

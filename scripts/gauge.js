@@ -68,16 +68,6 @@ function createGauge(containerId, value, pollutant) {
             fillOpacity: 0.8,
         });
     });
-
-    // Add title and value above the gauge
-    const container = document.getElementById(containerId);
-    const pollutantHeader = document.createElement("div");
-    pollutantHeader.className = "pollutant-header";
-    pollutantHeader.innerHTML = `
-        <h3>${getFullName(pollutant)}</h3>
-        <p>${value.toFixed(2)} μg/m³</p>
-    `;
-    container.insertAdjacentElement("afterbegin", pollutantHeader);
 }
 
 

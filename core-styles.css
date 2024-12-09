@@ -78,6 +78,66 @@
     transform: translateY(-2px);
 }
 
+/* Air Pollution Section */
+.pollution-section {
+    background: #f9fdf9;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1200px; /* Match the width of the pollutants grid */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the content */
+    gap: 1rem; /* Add spacing between elements */
+}
+
+/* Adjust Air Pollution Header */
+.pollution-section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #026958;
+    margin-bottom: 1rem;
+}
+
+/* Adjust Pollution Summary Styling */
+.pollution-summary {
+    width: 100%; /* Match the container's width */
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Key Alignment */
+.pollutant-key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto;
+    padding: 0.5rem;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid Layout for Pollutants */
+/* Grid Layout for Gauges */
+.pollutant-charts-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+    gap: 1rem; /* Add spacing between the gauges */
+    justify-content: center; /* Center-align the grid content */
+    margin: 0 auto; /* Center the grid within the parent container */
+    max-width: 1200px; /* Restrict the width to align with other content */
+}
+
+
 /* Pollutant Key Styling */
 .pollutant-key {
     display: flex;
@@ -108,9 +168,10 @@
 
 /* Gauge Container */
 .gauge-container {
-    width: 320px;
-    height: 370px;
-    margin: 1rem;
+    position: relative;
+    width: 300px; /* Adjusted width */
+    height: 320px; /* Adjusted height */
+    margin: 0.5rem;
     text-align: center;
     background: #ffffff;
     border-radius: 10px;
@@ -119,6 +180,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* Gauge Canvas */
+.gauge-container canvas {
+    width: 250px !important;
+    height: 200px !important;
+    position: relative;
+    margin: 0 auto;
 }
 
 /* Pollutant Header Styling */
@@ -140,12 +209,51 @@
     margin: 0.3rem 0 0;
 }
 
-/* Adjust Gauge Layout */
+/* AQI Styling */
+.pollution-summary {
+    background: #f9fdf9;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.pollution-summary h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #026958;
+    margin-bottom: 1rem;
+}
+
+.current-air-quality {
+    margin-bottom: 1rem;
+}
+
+.current-air-quality h3 {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+#current-pollution span {
+    font-size: 1.4rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #e2ffea;
+    color: #026958;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid Layout for Gauges */
 .pollutant-charts-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+    gap: 1rem; /* Add spacing between the gauges */
+    justify-items: center; /* Center align items horizontally */
+    margin: 1rem auto;
 }
 
 /* Footer Styling */
