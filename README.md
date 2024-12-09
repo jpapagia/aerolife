@@ -20,4 +20,7 @@ NH3: min value 0.1 - max value 200
 NO: min value 0.1 - max value 100
 
 https://openweathermap.org/api/air-pollution
+
+Potentil APIs:
+https://developer.nrel.gov/docs/solar/solar-resource-v1/
   

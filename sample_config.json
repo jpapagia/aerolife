@@ -1,0 +1,5 @@
+{
+    "OPENWEATHER_API_KEY" : "<REPLACE_ME>",
+    "NREL_API_KEY" : "<REPLACE_ME>",
+    "Comment" : "RENAME THIS FILE TO 'config.json'"
+  }
