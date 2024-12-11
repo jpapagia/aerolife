@@ -208,7 +208,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             renderAQIChart('dayChart', labels, aqiValues, `AQI for the Past 24 Hours`, additionalInfo);
         } else {
             console.warn("No data available for the past 24 hours.");
-            // Optionally, you can clear or hide the chart here
         }
 
         // Update Past Year Graph
@@ -262,7 +261,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             renderAQIChart('dayChart', labels, aqiValues, `AQI for ${date}`, additionalInfo);
         } else {
             console.warn("No data available for the selected day.");
-            // Optionally, you can clear or hide the chart here
         }
     });
 
@@ -285,7 +283,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             renderAQIChart('rangeChart', labels, aqiValues, `AQI from ${startDate} to ${endDate}`, additionalInfo);
         } else {
             console.warn("No data available for the selected date range.");
-            // Optionally, you can clear or hide the chart here
         }
     });
 });
