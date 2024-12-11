@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="core-styles.css" />
     <link rel="icon" href="src/assets/logo/favicon.png" type="image/png" />
     <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- amCharts 5 -->
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 
 <body>
     <!-- Loading Animation -->
@@ -95,11 +95,39 @@
             </div>
         </section>
 
-
         <div id="pollutant-charts" class="pollutant-charts-container">
             <!-- Gauges for pollutants will be dynamically added here -->
         </div>
+
+        <!-- Historical Data Section -->
+        <section class="historical-data-section">
+            <h2 class="historical-data-header">Historical Air Quality Data</h2>
+
+            <!-- Past 24 Hours Graph -->
+            <div class="historical-graph">
+                <h3 class="historical-graph-header">Past 24 Hours</h3>
+                <canvas id="dayChart" width="400" height="200"></canvas>
+                <form id="dayForm" class="zip-form">
+                    <label for="dayInput" class="form-label">Select Day:</label>
+                    <input type="date" id="dayInput" required />
+                    <button type="submit" class="modern-btn">Update Graph</button>
+                </form>
+            </div>
+
+            <!-- Past Year Graph -->
+            <div class="historical-graph">
+                <h3 class="historical-graph-header">Past Year</h3>
+                <canvas id="rangeChart" width="400" height="200"></canvas>
+                <form id="rangeForm" class="zip-form">
+                    <label for="startDateInput" class="form-label">Start Date:</label>
+                    <input type="date" id="startDateInput" required />
+                    <label for="endDateInput" class="form-label">End Date:</label>
+                    <input type="date" id="endDateInput" required />
+                    <button type="submit" class="modern-btn">Update Graph</button>
+                </form>
+            </div>
         </section>
+
 
         <!-- Placeholder Section -->
         <section class="api-placeholder">
@@ -112,10 +140,9 @@
             <span class="fas fa-exclamation-circle alert-icon"></span>
             <span class="msg">Error: Please enter a valid 5-digit U.S. ZIP code.</span>
             <button class="close-btn">
-              <span class="fas fa-times"></span>
+                <span class="fas fa-times"></span>
             </button>
-          </div>          
-             
+        </div>
     </div>
 
     <footer class="footer">
@@ -126,6 +153,7 @@
     <script src="scripts/loading.js"></script>
     <script src="scripts/core.js"></script>
     <script src="scripts/gauge.js"></script>
+    <script src="scripts/historical.js"></script>
 </body>
 
 </html>

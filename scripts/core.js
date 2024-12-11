@@ -73,14 +73,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             const res = await fetch(`${GEO_API_BASE}?zip=${zip},US&appid=${OPENWEATHER_API_KEY}`);
             if (!res.ok) throw new Error("Invalid ZIP code");
             const data = await res.json();
-            return { lat: data.lat, lon: data.lon, city: data.name || "Unknown" };
+            
+            // Ensure data integrity
+            const lat = data.lat || 0;
+            const lon = data.lon || 0;
+            const city = data.name || "Unknown City";
+    
+            return { lat, lon, city, zip };
         } catch (error) {
             console.error("Error fetching coordinates:", error);
             showZipError();
             return null;
         }
     }
-
+    
     // Fetch air pollution data
     async function fetchAirPollutionData(lat, lon) {
         try {
@@ -174,22 +180,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Handle ZIP code change
     changeZipBtn.addEventListener('click', async () => {
         const newZip = manualZipInput.value.trim();
+    
         if (/^\d{5}$/.test(newZip)) {
+            // Set loading state
+            locationDisplay.textContent = "Loading...";
+            coordinatesDisplay.textContent = "Fetching coordinates...";
+    
             const locationData = await fetchCoordinates(newZip);
+    
             if (locationData) {
-                const { lat, lon, city } = locationData;
-            
+                const { lat, lon, city, zip } = locationData;
+    
+                // Update location and coordinates display
+                locationDisplay.textContent = `${city}, ${zip}`; // Show city and ZIP
                 coordinatesDisplay.textContent = `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)}`;
-                locationDisplay.textContent = `City: ${city}, ZIP: ${newZip}`;
-                await displayPollutionData(newZip);
+    
+                // Display air pollution data for the new ZIP
+                await displayPollutionData(zip);
+            } else {
+                // Handle failure to fetch valid data
+                locationDisplay.textContent = "Unknown Location";
+                coordinatesDisplay.textContent = "Coordinates unavailable";
             }
-            
         } else {
             showZipError();
         }
     });
     
-
+    
     // Initial load
     const locationData = await fetchUserLocationByIP();
     const { zip, city, lat, lon } = locationData;

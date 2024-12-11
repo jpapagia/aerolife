@@ -312,6 +312,63 @@
     color: #ff4d4d;
   }
   
+  #chartjs-tooltip {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    max-width: 300px; /* Optional: Limit the tooltip width */
+    overflow-wrap: break-word; /* Ensure long words wrap */
+  }
+  
+  /* Historical Data Section Styling */
+.historical-data-section {
+    background: #f9fdf9;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.historical-data-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #026958;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Historical Graph Container */
+.historical-graph {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.historical-graph-header {
+    font-size: 1.5rem;
+    color: #026958;
+    margin-bottom: 1rem;
+}
+
+/* Form Labels for Historical Graphs */
+.form-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+.zip-form {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
 
 /* Footer Styling */
 .footer {
