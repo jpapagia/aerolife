@@ -18,7 +18,6 @@ Eco-Friendly Living
 
 
 Setup Instructions:
-
 1.Clone the repository to your local machine.
 2.Navigate to the project directory.
 
