@@ -5,7 +5,7 @@ AeroLife
 Product Descrption: 
 Welcome to the AeroLife Web Application! This project is a responsive and interactive website that provides real-time environmental data to promote eco-friendly and informed decision-making.
 
-Purpose:
+Purpose: to
 
 Features:
 Real-Time Data
