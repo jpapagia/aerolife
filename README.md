@@ -5,13 +5,6 @@ AeroLife
 Product Descrption: 
 Welcome to the AeroLife Web Application! This project is a responsive and interactive website that provides real-time environmental data to promote eco-friendly and informed decision-making.
 
-Features:
-Banner - Welcome video with a mission statement.
-About - Overview of the website's purpose and goals.
-Weather Tracking - Highlights key functionalities like real-time data, historical insights, and eco-friendly living tips.
-Carousel - Interactive image carousel to showcase application features.
-Footer - Contains copyright information and credits
-
 Create/ edit `config.json` file and populate it with:
 
 ```
