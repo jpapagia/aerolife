@@ -2,20 +2,25 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 let supabase; // Global Supabase client
 
-// Load Supabase configuration dynamically
+// Load Supabase configuration
 async function loadConfig() {
     try {
-        // Use global Vercel or Vite variables (set at build time)
-        const SUPABASE_PROJECT_URL = import.meta.env.VITE_SUPABASE_PROJECT_URL || process.env.VITE_SUPABASE_PROJECT_URL;
-        const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+        // Check for Vite environment variables
+        const SUPABASE_PROJECT_URL = 
+            import.meta.env.VITE_SUPABASE_PROJECT_URL || 
+            (typeof process !== 'undefined' && process.env.VITE_SUPABASE_PROJECT_URL);
+
+        const SUPABASE_ANON_KEY = 
+            import.meta.env.VITE_SUPABASE_ANON_KEY || 
+            (typeof process !== 'undefined' && process.env.VITE_SUPABASE_ANON_KEY);
 
         if (SUPABASE_PROJECT_URL && SUPABASE_ANON_KEY) {
             console.log("Using environment variables for Supabase.");
             return { SUPABASE_PROJECT_URL, SUPABASE_ANON_KEY };
         }
 
-        // Fallback to config.json for local development
-        console.log("Environment variables not found. Falling back to config.json. (FOR LOCAL DEPLOYMENT ONLY!)");
+        // Fallback to config.json for local environments
+        console.log("Environment variables not found. Falling back to config.json.");
         const response = await fetch('/config.json');
         if (!response.ok) throw new Error('Failed to load config.json');
         const config = await response.json();
