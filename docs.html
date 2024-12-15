@@ -9,11 +9,43 @@
   <link rel="stylesheet" href="docs-styles.css">
   <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" href="src/assets/logo/favicon.png" type="image/png">
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+    }
+
+    table th, table td {
+        border: 1px solid #ccc;
+        padding: 0.75rem;
+        text-align: center;
+    }
+
+    table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    h3 {
+        margin-top: 2rem;
+    }
+
+    ul {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+
+    ul li {
+        margin: 0.5rem 0;
+    }
+  </style>
 </head>
 <body>
-  <!-- Loading Animation -->
-  <div class="loading"></div>
-
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">
@@ -40,6 +72,21 @@
     </ul>
   </nav>
 
+  <!-- Side Navigation Bar -->
+  <div class="side-nav">
+      <h2>Docs Navigation</h2>
+      <ul>
+          <li><a href="#understanding-data">Understanding Data</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#configuration">Configuration</a></li>
+          <li><a href="#running">Running the App</a></li>
+          <li><a href="#api">API Reference</a></li>
+          <li><a href="#examples">Examples</a></li>
+          <li><a href="#faq">FAQ</a></li>
+      </ul>
+  </div>
+
   <!-- Main Content -->
   <div class="docs-container">
     <header class="docs-header">
@@ -55,14 +102,103 @@
       </div>      
     </header>
 
-    <section class="docs-content">
+    <section id="understanding-data">
+      <h2>Understanding Air Quality and Pollutant Data</h2>
+      <p>The <code>core.html</code> page provides real-time air quality information based on various pollutants. Each pollutant is monitored and categorized based on its concentration in the air. This data helps you understand the current air quality and its potential impact on health.</p>
+
+      <h3>Pollutants Monitored:</h3>
+      <ul>
+        <li><strong>Sulfur Dioxide (SO₂):</strong> Produced from burning fossil fuels, SO₂ can cause respiratory problems and aggravate lung diseases like asthma.</li>
+        <li><strong>Nitrogen Dioxide (NO₂):</strong> Emitted from vehicle exhaust and industrial processes, NO₂ contributes to respiratory issues and forms smog.</li>
+        <li><strong>Particulate Matter (PM10 and PM2.5):</strong> Tiny particles suspended in the air. PM10 includes larger particles like dust, while PM2.5 consists of fine particles that penetrate deep into the lungs.</li>
+        <li><strong>Ozone (O₃):</strong> A secondary pollutant formed by chemical reactions in sunlight. High levels of ozone can irritate the respiratory system.</li>
+        <li><strong>Carbon Monoxide (CO):</strong> A colorless, odorless gas produced by incomplete combustion. High levels of CO reduce oxygen delivery to the body's organs.</li>
+      </ul>
+
+      <h3>Air Quality Index (AQI) Thresholds:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Index</th>
+            <th>SO₂ (µg/m³)</th>
+            <th>NO₂ (µg/m³)</th>
+            <th>PM10 (µg/m³)</th>
+            <th>PM2.5 (µg/m³)</th>
+            <th>O₃ (µg/m³)</th>
+            <th>CO (µg/m³)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Good</td>
+            <td>1</td>
+            <td>[0; 20)</td>
+            <td>[0; 40)</td>
+            <td>[0; 20)</td>
+            <td>[0; 10)</td>
+            <td>[0; 60)</td>
+            <td>[0; 4400)</td>
+          </tr>
+          <tr>
+            <td>Fair</td>
+            <td>2</td>
+            <td>[20; 80)</td>
+            <td>[40; 70)</td>
+            <td>[20; 50)</td>
+            <td>[10; 25)</td>
+            <td>[60; 100)</td>
+            <td>[4400; 9400)</td>
+          </tr>
+          <tr>
+            <td>Moderate</td>
+            <td>3</td>
+            <td>[80; 250)</td>
+            <td>[70; 150)</td>
+            <td>[50; 100)</td>
+            <td>[25; 50)</td>
+            <td>[100; 140)</td>
+            <td>[9400; 12400)</td>
+          </tr>
+          <tr>
+            <td>Poor</td>
+            <td>4</td>
+            <td>[250; 350)</td>
+            <td>[150; 200)</td>
+            <td>[100; 200)</td>
+            <td>[50; 75)</td>
+            <td>[140; 180)</td>
+            <td>[12400; 15400)</td>
+          </tr>
+          <tr>
+            <td>Very Poor</td>
+            <td>5</td>
+            <td>⩾350</td>
+            <td>⩾200</td>
+            <td>⩾200</td>
+            <td>⩾75</td>
+            <td>⩾180</td>
+            <td>⩾15400</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="getting-started">
+      <h2>Getting Started</h2>
+      <p>Welcome to AeroLife! Follow this guide to set up quickly.</p>
+    </section>
+
+    <section id="installation">
       <h2>Installation</h2>
       <p>Run the following command to install:</p>
       <div class="code-snippet">
         <button class="copy-btn" aria-label="Copy code">Copy</button>
         <pre><code>npm install</code></pre>
       </div>
+    </section>
 
+    <section id="configuration">
       <h2>Configuration</h2>
       <p>Modify the settings in the configuration file:</p>
       <div class="code-snippet">
@@ -72,7 +208,9 @@
   "environment": "production"
 }</code></pre>
       </div>
+    </section>
 
+    <section id="running">
       <h2>Running the Application</h2>
       <p>Start the application with the following command:</p>
       <div class="code-snippet">

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loadAnimation = async () => {
     try {
       // Fetch the loading animation HTML
-      const response = await fetch('/loading.html'); // Adjust the path if needed
+      const response = await fetch('loading.html'); // Adjust the path if needed
       if (!response.ok) {
         throw new Error('Failed to load loading.html'); // Throw error if not found
       }

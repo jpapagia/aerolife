@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load API key
     let OPENWEATHER_API_KEY = "";
     try {
-        const res = await fetch('../config.json');
+        const res = await fetch('config.json');
         if (!res.ok) throw new Error("Failed to load API key file");
         const config = await res.json();
         OPENWEATHER_API_KEY = config.OPENWEATHER_API_KEY;
