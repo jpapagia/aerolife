@@ -1,5 +1,6 @@
 {
     "OPENWEATHER_API_KEY" : "<REPLACE_ME>",
-    "NREL_API_KEY" : "<REPLACE_ME>",
-    "Comment" : "RENAME THIS FILE TO 'config.json'"
+    "SUPABASE_PROJECT_URL" : "<REPLACE ME>",
+    "SUPABASE_ANON_KEY" : "<REPLACE ME>",
+    "Comment" : "RENAME THIS FILE TO 'config.json. Only use for local deployment. Remove this line'"
   }
