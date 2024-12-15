@@ -2,12 +2,30 @@ import { initSupabase } from './supabase.js';
 
 // Initialize Supabase
 let supabase;
-
 (async () => {
     supabase = await initSupabase();
 })();
 
 const ONE_HOUR = 3600 * 1000;
+
+// Load API keys for Vercel or local environment
+async function loadApiKey() {
+    try {
+        if (typeof process !== 'undefined' && process.env.OPENWEATHER_API_KEY) {
+            // Vercel environment
+            return process.env.OPENWEATHER_API_KEY;
+        } else {
+            // Local environment
+            const res = await fetch('/config.json');
+            if (!res.ok) throw new Error('Failed to load config.json');
+            const config = await res.json();
+            return config.OPENWEATHER_API_KEY;
+        }
+    } catch (error) {
+        console.error('Error loading API key:', error);
+        return null;
+    }
+}
 
 // Fetch user's location by IP
 async function fetchUserLocationByIP() {
@@ -23,12 +41,7 @@ async function fetchUserLocationByIP() {
         };
     } catch (error) {
         console.error('Error fetching IP-based location:', error);
-        return {
-            zip: '00000',
-            city: 'Unknown',
-            lat: 0,
-            lon: 0,
-        };
+        return { zip: '00000', city: 'Unknown', lat: 0, lon: 0 };
     }
 }
 
@@ -39,12 +52,7 @@ async function fetchCoordinates(zip, apiKey) {
         const res = await fetch(`${GEO_API_BASE}?zip=${zip},US&appid=${apiKey}`);
         if (!res.ok) throw new Error('Invalid ZIP code');
         const data = await res.json();
-        return {
-            city: data.name || 'Unknown City',
-            lat: data.lat || 0,
-            lon: data.lon || 0,
-            zip,
-        };
+        return { city: data.name || 'Unknown City', lat: data.lat || 0, lon: data.lon || 0, zip };
     } catch (error) {
         console.error('Error fetching coordinates:', error);
         return null;
@@ -63,18 +71,15 @@ async function fetchAirPollutionData(lat, lon, apiKey) {
             throw new Error('No air pollution data available');
         }
 
-        return {
-            aqi: data.list[0].main.aqi,
-            pollutants: data.list[0].components,
-        };
+        return { aqi: data.list[0].main.aqi, pollutants: data.list[0].components };
     } catch (error) {
         console.error('Error fetching air pollution data:', error);
         return null;
     }
 }
 
-// Check cached data in Supabase
-async function checkCache(city) {
+// Check cached data in Supabase by ZIP code
+async function checkCache(zip) {
     if (!supabase) {
         console.error('Supabase not initialized.');
         return null;
@@ -85,29 +90,29 @@ async function checkCache(city) {
     const { data: cachedData, error } = await supabase
         .from('cache')
         .select('*')
-        .eq('city', city)
+        .eq('zipcode', zip) // Using "zipcode" column
         .order('timestamp', { ascending: false })
         .limit(1);
 
     if (error) {
-        console.error(`Error fetching cached data for ${city}:`, error);
+        console.error(`Error fetching cached data for ZIP ${zip}:`, error);
         return null;
     }
 
-    if (cachedData && cachedData.length > 0) {
+    if (cachedData?.length > 0) {
         const cacheTimestamp = new Date(cachedData[0].timestamp).getTime();
         if (cacheTimestamp > oneHourAgo) {
-            console.log(`Using cached data for ${city}.`);
+            console.log(`Using cached data for ZIP ${zip}.`);
             return cachedData[0];
         }
     }
 
-    console.log(`No valid cache found for ${city}.`);
+    console.log(`No valid cache found for ZIP ${zip}.`);
     return null;
 }
 
 // Update or insert cache in Supabase
-async function updateCache(city, latitude, longitude, currentData) {
+async function updateCache(zip, city, latitude, longitude, currentData) {
     if (!supabase) {
         console.error('Supabase not initialized.');
         return;
@@ -115,21 +120,26 @@ async function updateCache(city, latitude, longitude, currentData) {
 
     const { error } = await supabase
         .from('cache')
-        .upsert({
-            city,
-            latitude,
-            longitude,
-            current_data: currentData,
-            timestamp: new Date().toISOString(),
-        });
+        .upsert(
+            {
+                zipcode: zip, // Use correct column name
+                city,
+                latitude,
+                longitude,
+                current_data: currentData,
+                timestamp: new Date().toISOString(),
+            },
+            { onConflict: 'zipcode' }
+        );
 
     if (error) {
-        console.error(`Error updating cache for ${city}:`, error);
+        console.error(`Error updating cache for ZIP ${zip}:`, error);
     } else {
-        console.log(`Cache updated for ${city}.`);
+        console.log(`Cache updated for ZIP ${zip}.`);
     }
 }
 
+// Display air quality data
 // Display air quality data
 function displayCurrentData(data) {
     const currentPollutionDisplay = document.getElementById('current-pollution');
@@ -176,7 +186,7 @@ function displayCurrentData(data) {
         `;
 
         pollutantChartsContainer.appendChild(gaugeContainer);
-        createGauge(containerId, value, key); // Assuming createGauge is defined elsewhere
+        createGauge(containerId, value, key); // Ensure createGauge is correctly defined
     });
 }
 
@@ -193,7 +203,7 @@ async function handleZipChange(zip, apiKey) {
     locationDisplay.textContent = `${city}, ${zip}`;
     coordinatesDisplay.textContent = `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)}`;
 
-    const cachedEntry = await checkCache(city);
+    const cachedEntry = await checkCache(zip);
     if (cachedEntry) {
         displayCurrentData(cachedEntry.current_data);
         return;
@@ -202,7 +212,7 @@ async function handleZipChange(zip, apiKey) {
     const pollutionData = await fetchAirPollutionData(lat, lon, apiKey);
     if (pollutionData) {
         displayCurrentData(pollutionData);
-        await updateCache(city, lat, lon, pollutionData);
+        await updateCache(zip, city, lat, lon, pollutionData);
     }
 }
 
@@ -211,28 +221,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     const locationDisplay = document.getElementById('current-location');
     const coordinatesDisplay = document.getElementById('current-coordinates');
 
-    const config = await fetch('config.json').then((res) => res.json());
+    const apiKey = await loadApiKey();
+    if (!apiKey) {
+        console.error('API key missing. Cannot proceed.');
+        return;
+    }
+
     const locationData = await fetchUserLocationByIP();
     const { zip, city, lat, lon } = locationData;
 
     locationDisplay.textContent = `${city}, ${zip}`;
     coordinatesDisplay.textContent = `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)}`;
 
-    await handleZipChange(zip, config.OPENWEATHER_API_KEY);
+    await handleZipChange(zip, apiKey);
 });
 
 // ZIP Code Input Listener
 document.getElementById('change-zip-btn').addEventListener('click', async () => {
     const manualZipInput = document.getElementById('manual-zip').value.trim();
-    const config = await fetch('config.json').then((res) => res.json());
+    const apiKey = await loadApiKey();
 
     if (/^\d{5}$/.test(manualZipInput)) {
-        await handleZipChange(manualZipInput, config.OPENWEATHER_API_KEY);
+        await handleZipChange(manualZipInput, apiKey);
     } else {
         const zipErrorDialog = document.getElementById('zip-error-dialog');
+        zipErrorDialog.textContent = 'Please enter a valid 5-digit ZIP code.';
         zipErrorDialog.classList.add('show');
+
         setTimeout(() => {
             zipErrorDialog.classList.remove('show');
         }, 7000);
+
     }
 });

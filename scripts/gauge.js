@@ -70,8 +70,6 @@ function createGauge(containerId, value, pollutant) {
     });
 }
 
-
-
 function getThresholdsForPollutant(pollutant) {
     const thresholds = {
         co: [
@@ -134,7 +132,6 @@ function getThresholdsForPollutant(pollutant) {
     return thresholds[pollutant] || [];
 }
 
-
 function getFullName(pollutant) {
     const names = {
         co: "Carbon Monoxide",
@@ -148,6 +145,5 @@ function getFullName(pollutant) {
     };
     return names[pollutant] || pollutant;
 }
-
 
 window.createGauge = createGauge;
