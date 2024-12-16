@@ -18,7 +18,7 @@ async function loadConfig() {
 
         // Fallback to config.json for local development
         console.log("Environment variables not found. Falling back to config.json.");
-        const response = await fetch('/aerolife/config.json');
+        const response = await fetch('/config.json');
         if (!response.ok) throw new Error('Failed to load config.json');
         const config = await response.json();
 

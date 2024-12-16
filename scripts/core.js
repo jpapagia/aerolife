@@ -16,7 +16,7 @@ async function loadApiKey() {
             return process.env.OPENWEATHER_API_KEY;
         } else {
             // Local environment
-            const res = await fetch('/aerolife/config.json');
+            const res = await fetch('/config.json');
             if (!res.ok) throw new Error('Failed to load config.json');
             const config = await res.json();
             return config.OPENWEATHER_API_KEY;
