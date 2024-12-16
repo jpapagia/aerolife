@@ -4,14 +4,20 @@ let supabase = null;
 
 async function loadConfig() {
     try {
+        // Use environment variables directly in Vercel
         if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL) {
+            console.log('Environment Variables:', {
+                SUPABASE_PROJECT_URL: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL,
+                SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+                OPENWEATHER_API_KEY: process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY,
+            });
             return {
                 SUPABASE_PROJECT_URL: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL,
                 SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
                 OPENWEATHER_API_KEY: process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY,
             };
         } else {
-            // Local fallback
+            console.warn('Environment variables not found. Falling back to local config.json.');
             const response = await fetch('/config.json');
             if (!response.ok) throw new Error('Failed to load config.json');
             return await response.json();
@@ -21,7 +27,6 @@ async function loadConfig() {
         return null;
     }
 }
-
 
 export async function initSupabase() {
     if (!supabase) {
