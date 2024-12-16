@@ -147,7 +147,6 @@ body {
   /* Interaction enabled when visible */
 }
 
-
 .video-wrapper {
   position: absolute;
   top: 0;
@@ -222,7 +221,6 @@ body {
   height: 200px;
   border-radius: 12px;
   margin-top: 0.25rem;
-
 }
 
 .about-image-container {

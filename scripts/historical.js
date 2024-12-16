@@ -9,28 +9,18 @@ let supabase;
 // Load API keys for Vercel or local environment
 async function loadApiKey() {
     try {
-        const apiKey =
-            (typeof import.meta !== 'undefined' && import.meta.env.VITE_OPENWEATHER_API_KEY) ||
-            (typeof process !== 'undefined' && process.env.VITE_OPENWEATHER_API_KEY);
-
-        if (apiKey) {
-            console.log('Using environment variables for OpenWeather API key.');
-            return apiKey;
-        }
-
-        // Fallback to config.json for local development
-        console.log('Environment variable for OpenWeather API not found. Falling back to config.json.');
-        const response = await fetch('/config.json');
-        if (!response.ok) throw new Error('Failed to load config.json');
-        const config = await response.json();
-
-        if (config.OPENWEATHER_API_KEY) {
-            return config.OPENWEATHER_API_KEY;
+        if (typeof process !== 'undefined' && process.env.OPENWEATHER_API_KEY) {
+            // Vercel environment
+            return process.env.OPENWEATHER_API_KEY;
         } else {
-            throw new Error('OpenWeather API key missing in config.json');
+            // Local environment
+            const res = await fetch('/aerolife/config.json');
+            if (!res.ok) throw new Error('Failed to load config.json');
+            const config = await res.json();
+            return config.OPENWEATHER_API_KEY;
         }
     } catch (error) {
-        console.error('Error loading API key:', error.message);
+        console.error('Error loading API key:', error);
         return null;
     }
 }
