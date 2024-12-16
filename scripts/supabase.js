@@ -5,14 +5,18 @@ let supabase = null;
 async function loadConfig() {
     try {
         if (typeof process !== 'undefined' && process.env.VITE_SUPABASE_PROJECT_URL) {
-            // Vercel or server environment
+            console.log('Environment Variables:', {
+                SUPABASE_PROJECT_URL: process.env.VITE_SUPABASE_PROJECT_URL,
+                SUPABASE_ANON_KEY: process.env.VITE_SUPABASE_ANON_KEY,
+                OPENWEATHER_API_KEY: process.env.VITE_OPENWEATHER_API_KEY,
+            });
             return {
                 SUPABASE_PROJECT_URL: process.env.VITE_SUPABASE_PROJECT_URL,
                 SUPABASE_ANON_KEY: process.env.VITE_SUPABASE_ANON_KEY,
+                OPENWEATHER_API_KEY: process.env.VITE_OPENWEATHER_API_KEY,
             };
         } else {
-            // Local environment
-            const response = await fetch('/aerolife/config.json');
+            const response = await fetch('/config.json');
             if (!response.ok) throw new Error('Failed to load config.json');
             return await response.json();
         }
