@@ -3,7 +3,7 @@
 ## **Description**  
 Aerolife is a responsive and interactive web application providing **real-time air quality data** and historical insights. Designed for eco-conscious users and urban dwellers, Aerolife empowers users with up-to-date air pollution data, promoting informed decisions and sustainable living.
 
-## **Target Browsers**  
+## **Target Browsers**   
 - **Desktop**: Chrome, Firefox, Safari, Edge  
 - **Mobile**: Not currently optomixed for mobile browsers.
 
