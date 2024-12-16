@@ -49,7 +49,8 @@
           <li><a href="#configuration">Configuration</a></li>
           <li><a href="#running">Running the App</a></li>
           <li><a href="#api">API Reference</a></li>
-          <li><a href="#examples">Examples</a></li>
+          <li><a href="#known-bugs">Known Bugs</a></li>
+          <li><a href="#roadmap">Future Roadmap</a></li>
           <li><a href="#faq">FAQ</a></li>
       </ul>
   </div>
@@ -171,12 +172,13 @@
 
     <section id="configuration">
       <h2>Configuration</h2>
-      <p>Modify the settings in the configuration file:</p>
+      <p>Modify the settings in the configuration file for local deployments:</p>
       <div class="code-snippet">
         <button class="copy-btn" aria-label="Copy code">Copy</button>
         <pre><code>{
-  "apiKey": "your-api-key",
-  "environment": "production"
+  "OPENWEATHER_API_KEY": "your_openweather_api_key",
+  "SUPABASE_PROJECT_URL": "your_supabase_project_url",
+  "SUPABASE_ANON_KEY": "your_supabase_anon_key"
 }</code></pre>
       </div>
     </section>
@@ -186,8 +188,38 @@
       <p>Start the application with the following command:</p>
       <div class="code-snippet">
         <button class="copy-btn" aria-label="Copy code">Copy</button>
-        <pre><code>npm run start</code></pre>
+        <pre><code>npm start</code></pre>
       </div>
+    </section>
+
+    <section id="api">
+      <h2>API Reference</h2>
+      <h3>1. Get Historical Air Quality Data</h3>
+      <p><strong>Method:</strong> GET</p>
+      <p><strong>Endpoint:</strong> /api/getData</p>
+      <p><strong>Description:</strong> Retrieves the live cache data from the Supabase.</p>
+      <h3>2. Update the Cache</h3>
+      <p><strong>Method:</strong> POST</p>
+      <p><strong>Endpoint:</strong> /api/updateData</p>
+      <p><strong>Description:</strong> Updates the Supabase with more recent data to prevent overcalling the Open Weather API.</p>
+    </section>
+
+    <section id="known-bugs">
+      <h2>Known Bugs</h2>
+      <ul>
+        <li>Gauges do not load properly on Core page.</li>
+        <li>Historical data and caching on deployment refusing to load properly.</li>
+        <li>Home page scrolling issues.</li>
+      </ul>
+    </section>
+
+    <section id="roadmap">
+      <h2>Future Roadmap</h2>
+      <ul>
+        <li>Add forecast for future AQI values.</li>
+        <li>Configure for mobile use (Safari, Chrome).</li>
+        <li>Improve styles and consistency.</li>
+      </ul>
     </section>
   </div>
 
