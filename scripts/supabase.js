@@ -4,15 +4,21 @@ let supabase = null;
 
 async function loadConfig() {
     try {
-        const response = await fetch('/config.json'); // Load local config.json
-        if (!response.ok) throw new Error('Failed to load config.json');
-        return await response.json();
+        if (typeof process !== 'undefined' && process.env.VITE_SUPABASE_PROJECT_URL) {
+            // Vercel or server environment
+            return {
+                SUPABASE_PROJECT_URL: process.env.VITE_SUPABASE_PROJECT_URL,
+                SUPABASE_ANON_KEY: process.env.VITE_SUPABASE_ANON_KEY,
+            };
+        } else {
+            // Local environment
+            const response = await fetch('/aerolife/config.json');
+            if (!response.ok) throw new Error('Failed to load config.json');
+            return await response.json();
+        }
     } catch (error) {
-        console.warn('Using environment variables as fallback.');
-        return {
-            SUPABASE_PROJECT_URL: process.env.SUPABASE_PROJECT_URL,
-            SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
-        };
+        console.error('Error loading configuration:', error);
+        return null;
     }
 }
 
