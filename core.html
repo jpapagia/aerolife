@@ -156,6 +156,13 @@
     <script type="module" src="scripts/core.js"></script>
     <script type="module" src="scripts/historical.js"></script>
     <script type="module" src="scripts/supabase.js"></script>
+    <script>
+        window.env = {
+            SUPABASE_PROJECT_URL: "<%= process.env.VITE_SUPABASE_PROJECT_URL %>",
+            SUPABASE_ANON_KEY: "<%= process.env.VITE_SUPABASE_ANON_KEY %>",
+            OPENWEATHER_API_KEY: "<%= process.env.VITE_OPENWEATHER_API_KEY %>"
+        };
+    </script>
     
 
 </body>

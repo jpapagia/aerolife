@@ -140,7 +140,6 @@ async function updateCache(zip, city, latitude, longitude, currentData) {
 }
 
 // Display air quality data
-// Display air quality data
 function displayCurrentData(data) {
     const currentPollutionDisplay = document.getElementById('current-pollution');
     const pollutantChartsContainer = document.getElementById('pollutant-charts');

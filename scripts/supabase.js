@@ -4,17 +4,16 @@ let supabase = null;
 
 async function loadConfig() {
     try {
-        // Use environment variables directly in Vercel
-        if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL) {
+        if (window.env && window.env.SUPABASE_PROJECT_URL) {
             console.log('Environment Variables:', {
-                SUPABASE_PROJECT_URL: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL,
-                SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-                OPENWEATHER_API_KEY: process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY,
+                SUPABASE_PROJECT_URL: window.env.SUPABASE_PROJECT_URL,
+                SUPABASE_ANON_KEY: window.env.SUPABASE_ANON_KEY,
+                OPENWEATHER_API_KEY: window.env.OPENWEATHER_API_KEY,
             });
             return {
-                SUPABASE_PROJECT_URL: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL,
-                SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-                OPENWEATHER_API_KEY: process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY,
+                SUPABASE_PROJECT_URL: window.env.SUPABASE_PROJECT_URL,
+                SUPABASE_ANON_KEY: window.env.SUPABASE_ANON_KEY,
+                OPENWEATHER_API_KEY: window.env.OPENWEATHER_API_KEY,
             };
         } else {
             console.warn('Environment variables not found. Falling back to local config.json.');
@@ -27,6 +26,7 @@ async function loadConfig() {
         return null;
     }
 }
+
 
 export async function initSupabase() {
     if (!supabase) {
